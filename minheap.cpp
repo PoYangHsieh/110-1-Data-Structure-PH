@@ -3,15 +3,14 @@
 #include <fstream>
 using namespace std;
 int ** location;
-class Node
-{
+class Node{
     friend class Min_heap;
-public :
-    int position[2];
-    int value=2147483647;
-    int from[2]={0,0};
-    Node();
-    Node(int x,int y);
+    public :
+        int position[2];
+        int value=2147483647;
+        int from[2]={0,0};
+        Node();
+        Node(int x,int y);
 };
 Node::Node(){
 
@@ -21,21 +20,18 @@ Node::Node(int x,int y){
     position[1]=y;
 }
 
-class Min_heap
-{
-private:
-    
-public:
-   vector<Node> heap;
-   int number_of_nodes=0;
-   Min_heap();
-   Min_heap(int val);
-   void swap(int key_a,int key_b);
-   void insertion(Node a);
-   void Min_heapify(int i);
-   Node extract_min();
-   void decrease(int x,int y,int val);
-   void decrease(int x,int y,int val,int from_x,int from_y);
+class Min_heap{
+    public:
+    vector<Node> heap;
+    int number_of_nodes=0;
+    Min_heap();
+    Min_heap(int val);
+    void swap(int key_a,int key_b);
+    void insertion(Node a);
+    void Min_heapify(int i);
+    Node extract_min();
+    void decrease(int x,int y,int val);
+    void decrease(int x,int y,int val,int from_x,int from_y);
 };
 Min_heap::Min_heap(){
     
@@ -158,9 +154,8 @@ int main(){
         for(int i=0;i<N;i++){   
             damage[i] = new int[N];
         }
-        int i,j=1;
         for(int i=0;i<N;i++){
-            for(j=0;j<N;j++){
+            for(int j=0;j<N;j++){
                 ifs>>damage[i][j];
             }
         }
@@ -188,7 +183,7 @@ int main(){
     mapping[min.position[0]-1][min.position[1]-1]=min;
     int cur_x=min.position[0];
     int cur_y=min.position[1];
-    location[cur_x-1][cur_y-1]=-1;
+    location[0][0]=-1;
     H.decrease(cur_x,cur_y+1,min.value+damage[cur_x-1][cur_y+1-1],cur_x,cur_y);
     H.decrease(cur_x+1,cur_y,min.value+damage[cur_x+1-1][cur_y-1],cur_x,cur_y);
 
